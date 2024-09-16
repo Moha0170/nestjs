@@ -8,10 +8,19 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
-    <% for(var i=0; i<quotes.length; i++) { %>
-    <p><%= quotes[i].id %></p>
-    <p><%= quotes[i].quote %></p>
-    <p><%= quotes[i].author %></p>
+    <% const map = new Map() %>
+    <% for(var i=0; i<quotes.length; i++) {
+        if (map.has(quotes[i].author)) {
+            map.set(quotes[i].author, map.get(quotes[i].author) + 1)
+        } else {
+            map.set(quotes[i].author, 1)
+        }
+    }
+    %>
+    <% const mapiter = map.keys() %> 
+    <% for(var i=0; i<map.length; i++) { %>
+        <p><%= mapiter.next().value %></p>
+        <p><%= map.get(map[i]) %></p>
     <% } %>
 </body>
 </html>
