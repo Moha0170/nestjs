@@ -33,4 +33,10 @@ export class AppController {
   topauthor() {
     return quotes;
   }
+
+  @Get('authorRandomFrom')
+  @Render('authorrandomfrom')
+  authorRandomFrom() {
+    
+  }
 }
