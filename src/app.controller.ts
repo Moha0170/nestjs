@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 import exp from 'constants';
 import { get } from 'http';
@@ -37,6 +37,30 @@ export class AppController {
   @Get('authorRandomFrom')
   @Render('authorrandomfrom')
   authorRandomFrom() {
-    
+    return null;
+  }
+
+  @Get('authorRandom')
+  @Render('authorrandom')
+  authorRandom(@Query('author') author: string) {
+    let a = [];
+    let final;
+    quotes.quotes.forEach(element => {
+      if (element.author == author) {
+        a.push(element.quote)
+      }
+    });
+    if (a.length > 0) {
+      let randnum = Math.floor(Math.random() * a.length)
+      final = a[randnum]
+      return {
+
+        final
+      } 
+      
+    } else {
+      final: "Nincs ilyen";
+      return {final}
+    }
   }
 }
